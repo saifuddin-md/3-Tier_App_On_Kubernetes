@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rr-backend-deployment
+  annotations:
+    kubernetes.io/change-cause: "Initial release with rr-backend:latest"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+
+  template:
+    metadata:
+      labels:
+        app: backend
+        environment: development
+
+    spec:
+      containers:
+      - name: rr-backend-container
+        image: xrootms/rr-backend:latest
+
+        ports:
+        - containerPort: 5001
+
+        env:
+        - name: MONGO_URI
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: MONGO_URI
+
+        - name: RESTREVIEWS_NS
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: RESTREVIEWS_NS
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rr-backend-service
+
+spec:
+  type: ClusterIP   
+  selector:
+    app: backend
+  ports:
+  - port: 5001
+    targetPort: 5001
