@@ -11,9 +11,17 @@ metadata:
 
 spec:
   replicas: 1
+  revisionHistoryLimit: 10           # old replicasets kept for rollback (default: 10)
+  minReadySeconds: 5                 # seconds pods must be ready before counted avilable (default:0)
+  progressDeadlinesSeconds: 300      # mark rollout stalled after N seconds (default: 600)
   selector:
     matchLabels:
       app: frontend
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1                    # allow 1 extra pod during update. (default is 25 %)
+      maxUnavailable: 0              # keep all existing pods available. (default is 25%)
 
   template:
     metadata:
