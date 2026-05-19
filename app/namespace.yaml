@@ -3,6 +3,6 @@ kind: Namespace
 metadata:
   name: rr-app
   labels:
-    environment: dev
+    env: dev
     project: 3-tier-app-on-k8s
 
