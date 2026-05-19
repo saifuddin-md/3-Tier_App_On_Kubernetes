@@ -2,6 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rr-frontend-deployment
+  namespace: rr-app 
+  labels:
+    app: frountend
+    env: development
   annotations:
     kubernetes.io/change-cause: "Initial release with rr-frontend:v3"
 
