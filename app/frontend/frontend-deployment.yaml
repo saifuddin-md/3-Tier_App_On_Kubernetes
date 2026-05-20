@@ -33,7 +33,13 @@ spec:
       containers:
       - name: rr-frontend--container
         image: xrootms/rr-frontend:v3
-
+        resources:
+          requests:                    # Dont schedule this Pod unless the node has at least.
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
 ---
 apiVersion: v1
 kind: Service
