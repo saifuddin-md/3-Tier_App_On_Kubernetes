@@ -4,7 +4,7 @@ metadata:
   name: rr-frontend-deployment
   namespace: rr-app 
   labels:
-    app: frountend
+    app: frontend
     env: development
   annotations:
     kubernetes.io/change-cause: "Initial release with rr-frontend:v3"
