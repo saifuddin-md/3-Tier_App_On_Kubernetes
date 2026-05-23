@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rr-frontend-deployment
-  namespace: rr-app 
+  namespace: rr-app
   labels:
     app: frontend
     env: development
@@ -33,8 +33,26 @@ spec:
       containers:
       - name: rr-frontend--container
         image: xrootms/rr-frontend:v3
+        ports:
+        - containerPort: 80
+
+        livenessProbe:                        # Liveness GET / every 5 sec. If failed: restart pod.
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 2              # Wait 2 seconds after container starts BEFORE first health check
+          periodSeconds: 5                    # Run health check every 5 seconds
+
+        readinessProbe:                       #  Readiness  GET / every 5 sec. 2 successful checks before traffic allowed.
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 2                 # 2 successful checks in a row before marking pod Ready
+
         resources:
-          requests:                    # Dont schedule this Pod unless the node has at least.
+          requests:                           # Dont schedule this Pod unless the node has at least.
             cpu: "100m"
             memory: "128Mi"
           limits:
