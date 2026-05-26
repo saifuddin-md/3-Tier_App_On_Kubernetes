@@ -66,6 +66,14 @@ spec:
           periodSeconds: 5
           successThreshold: 2                 # 2 successful checks in a row before marking pod Ready
 
+        resources:
+          requests:                           # Dont schedule this Pod unless the node has at least.
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+
 ---
 apiVersion: v1
 kind: Service
