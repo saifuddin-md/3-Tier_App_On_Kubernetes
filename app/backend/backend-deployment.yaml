@@ -32,7 +32,8 @@ spec:
     spec:
       containers:
       - name: rr-backend-container
-        image: xrootms/rr-backend:latest
+        image: xrootms/rr-backend:p1
+        imagePullPolicy: Always
 
         ports:
         - containerPort: 5001
