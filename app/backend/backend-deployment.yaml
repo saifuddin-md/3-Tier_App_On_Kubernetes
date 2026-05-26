@@ -79,11 +79,16 @@ apiVersion: v1
 kind: Service
 metadata:
   name: rr-backend-service
+  namespace: rr-app
+  labels:
+    app: backend
+    env: development
 
 spec:
   type: ClusterIP   
   selector:
     app: backend
+
   ports:
   - port: 5001
     targetPort: 5001
