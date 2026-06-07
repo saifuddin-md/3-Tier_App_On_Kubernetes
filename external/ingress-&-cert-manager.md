@@ -368,8 +368,8 @@ kubectl get secret rr-app-tls -n rr-app -o yaml
 ```
 **Inside the Secret are:**
 
-tls.crt   <-- SSL certificate
-tls.key   <-- Private key
+- tls.crt   <-- SSL certificate
+- tls.key   <-- Private key
 
 ### Step 8.6: Test HTTPS
 
