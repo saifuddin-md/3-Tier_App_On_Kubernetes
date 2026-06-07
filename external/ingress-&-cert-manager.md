@@ -4,10 +4,8 @@ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 helm version
 helm
 ```
-
-
-==============================================================================================
-- Install NGINX with NLB explicitly (recommended on EKS)
+============================================================================================
+- **Install NGINX with NLB explicitly (recommended on EKS)**
 
 ```xml
 helm install ingress-nginx ingress-nginx/ingress-nginx \
@@ -19,7 +17,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
 
 **This ensures AWS creates an NLB.**
 ---
-=============================================================================================
+============================================================================================
 
 ## Step 1: Install NGINX Ingress Controller
 
@@ -37,6 +35,24 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
   --namespace ingress-nginx \
   --create-namespace
 ```
+---
+- **Install NGINX with NLB explicitly (recommended on EKS)** (*This ensures AWS creates an NLB.*).
+
+```xml
+helm install ingress-nginx ingress-nginx/ingress-nginx \
+  --namespace ingress-nginx \
+  --create-namespace \
+  --set controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-type"="external" \
+  --set controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-nlb-target-type"="ip"
+```
+
+---
+
+
+
+
+
+
 
 **Check:**
 ```bash
