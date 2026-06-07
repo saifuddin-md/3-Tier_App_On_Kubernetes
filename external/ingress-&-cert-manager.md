@@ -37,6 +37,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
 kubectl get pods -n ingress-nginx
 ```
 **Expected:**
+
 |------------------------------------------|
 | ingress-nginx-controller-xxxxx   Running |
 
