@@ -34,12 +34,6 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
 
 ---
 
-
-
-
-
-
-
 **Check:**
 ```bash
 kubectl get pods -n ingress-nginx
@@ -50,19 +44,21 @@ ingress-nginx-controller-xxxxx   Running
 
 ## Step 2: Verify Controller Service
 
-bash
-
+```bash
 kubectl get svc -n ingress-nginx
+```
 
 **Expected:**
 
 NAME                       TYPE           EXTERNAL-IP
 ingress-nginx-controller   LoadBalancer   a1b2c3d4...
 
-
+```bash
 kubectl get deploy -n ingress-nginx
-
+```
+```bash
 kubectl describe pod <pod-name> -n ingress-nginx
+```
 
 *AWS automatically creates a Load Balancer.*
 
@@ -70,26 +66,29 @@ kubectl describe pod <pod-name> -n ingress-nginx
 
 **Example:**
 
+```bash
 a1b2c3d4.ap-south-1.elb.amazonaws.com
-
+```
 ## Step 3: Verify Your Services
 
-bash
 
+```bash
 kubectl get svc -n rr-app
+```
 
 **You should see something like:**
 
 ct-frontend-service   ClusterIP   80/TCP
 ct-backend-service    ClusterIP   5000/TCP
 
-If they exist, continue.
+*If they exist, continue.*
 
 
 ## Step 4: Create Ingress
 
 Create ingress.yaml
 
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -120,18 +119,24 @@ spec:
             name: ct-backend-service
             port:
               number: 5001
+```
 
 **Apply:**
 
-bash
 
+
+```bash
 kubectl apply -f ingress.yaml
-
+```
 
 
 ## Step 5: Verify Ingress
 
+
+
+```bash
 kubectl get ingress -n rr-app
+```
 
 **Expected:*
 
@@ -139,12 +144,14 @@ NAME             CLASS   HOSTS
 rr-app-ingress   nginx   app.example.com
 
 
+
+```bash
 kubectl describe ingress rr-app-ingress -n rr-app
 
 kubectl logs -n ingress-nginx <controller-pod>
 
 kubectl get ingressclass
-
+```
 
 ## Step 6: Configure DNS
 
@@ -176,34 +183,40 @@ At this stage everything works over HTTP.
 
 After HTTP is working:
 
-Install cert-manager.
-Create a ClusterIssuer for Let's Encrypt.
-Add TLS configuration to the Ingress.
-cert-manager automatically obtains and renews certificates.
-
-
+- Install cert-manager.
+- Create a ClusterIssuer for Let's Encrypt.
+- Add TLS configuration to the Ingress.
+- cert-manager automatically obtains and renews certificates.
 
 ### Step 8.1: Install cert-manager
 
+```bash
 helm repo add jetstack https://charts.jetstack.io
 helm repo update
+```
 
 **Install cert-manager:**
 
+```bash
 helm install cert-manager jetstack/cert-manager \
   --namespace cert-manager \
   --create-namespace \
   --set crds.enabled=true
+```
 
 **Delete**
 
+```bash
 helm uninstall cert-manager -n cert-manager
 kubectl delete namespace cert-manager
 kubectl get crd | grep cert-manager | awk '{print $1}' | xargs kubectl delete crd
+```
 
 **Verify:**
 
+```bash
 kubectl get pods -n cert-manager
+```
 
 **You should see:**
 
@@ -218,6 +231,7 @@ all in Running state.
 
 Create clusterissuer.yaml
 
+```yaml
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
@@ -234,15 +248,19 @@ spec:
     - http01:
         ingress:
           class: nginx
+```
 
 **Apply:**
 
+```bash
 kubectl apply -f clusterissuer.yaml
+```
 
 **Verify:**
 
+```bash
 kubectl get clusterissuer
-
+```
 **Expected:**
 
 NAME               READY
@@ -253,6 +271,7 @@ letsencrypt-prod   True
 
 **Modify your Ingress:**
 
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -291,11 +310,13 @@ spec:
             name: ct-backend-service
             port:
               number: 5001
+```
 
 **Apply:**
 
+```bash
 kubectl apply -f ingress.yaml
-
+```
 
 ### Step 8.4: What cert-manager does
 
@@ -309,9 +330,7 @@ it automatically:
 2. Creates a temporary challenge route.
 3. Proves ownership of app.example.com.
 4. Receives the certificate.
-5. Stores it in a Secret:
-rr-app-tls
-
+5. Stores it in a Secret:  **rr-app-tls**
 6. Configures NGINX to use it.
 7. Renews it automatically before expiry.
 
@@ -319,7 +338,9 @@ rr-app-tls
 
 **Check certificate:**
 
+```bash
 kubectl get certificate -n rr-app
+```
 
 **Expected:**
 
@@ -328,21 +349,22 @@ rr-app-tls   True
 
 **Check secret:**
 
+```bash
 kubectl get secret -n rr-app
-
+```
 **Expected:**
 
 rr-app-tls
 
 **Check**
 
+```bash
 kubectl get secret rr-app-tls -n rr-app -o yaml
-
+```
 **Inside the Secret are:**
 
 tls.crt   <-- SSL certificate
 tls.key   <-- Private key
-
 
 ### Step 8.6: Test HTTPS
 
