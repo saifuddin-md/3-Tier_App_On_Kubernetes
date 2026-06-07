@@ -50,10 +50,9 @@ kubectl get svc -n ingress-nginx
 
 **Expected:**
 
-```
-NAME                       TYPE           EXTERNAL-IP
-ingress-nginx-controller   LoadBalancer   a1b2c3d4...
-```
+| NAME                       | TYPE           | EXTERNAL-IP
+| ingress-nginx-controller   | LoadBalancer   | a1b2c3d4...
+
 
 ```bash
 kubectl get deploy -n ingress-nginx
