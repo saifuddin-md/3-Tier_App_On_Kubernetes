@@ -7,7 +7,7 @@ helm
 
 
 =============================================================================================================
-Install NGINX with NLB explicitly (recommended on EKS)
+- Install NGINX with NLB explicitly (recommended on EKS)
 
 ```xml
 helm install ingress-nginx ingress-nginx/ingress-nginx \
