@@ -21,7 +21,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
   --namespace ingress-nginx \
   --create-namespace
 ```
----
+
 (*This ensures AWS creates an NLB.*).
 
 ```xml
@@ -31,8 +31,6 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
   --set controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-type"="external" \
   --set controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-nlb-target-type"="ip"
 ```
-
----
 
 **Check:**
 ```bash
