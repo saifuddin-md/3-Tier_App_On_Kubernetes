@@ -38,7 +38,7 @@ kubectl get pods -n ingress-nginx
 ```
 **Expected:**
 
-| ingress-nginx-controller-xxxxx   Running |
+ingress-nginx-controller-xxxxx   Running 
 
 ---
 
@@ -82,8 +82,8 @@ kubectl get svc -n rr-app
 
 **You should see something like:**
 
-ct-frontend-service   ClusterIP   80/TCP
-ct-backend-service    ClusterIP   5000/TCP
+- ct-frontend-service   ClusterIP   80/TCP
+- ct-backend-service    ClusterIP   5000/TCP
 
 *If they exist, continue.*
 
@@ -141,8 +141,9 @@ kubectl get ingress -n rr-app
 
 **Expected:*
 
-NAME             CLASS   HOSTS
-rr-app-ingress   nginx   app.example.com
+| NAME             |CLASS   | HOSTS     |
+|------------------|--------|-----------|
+| rr-app-ingress   \ nginx  | app.example.com |
 
 ```bash
 kubectl describe ingress rr-app-ingress -n rr-app
@@ -222,9 +223,9 @@ kubectl get pods -n cert-manager
 
 **You should see:**
 
-cert-manager
-cert-manager-cainjector
-cert-manager-webhook
+- cert-manager
+- cert-manager-cainjector
+- cert-manager-webhook
 
 all in Running state.
 
@@ -265,8 +266,9 @@ kubectl get clusterissuer
 ```
 **Expected:**
 
-NAME               READY
-letsencrypt-prod   True
+| NAME               | READY |
+|--------------------|-------|
+| letsencrypt-prod   | True  |
 
 
 ### Step 8.3: Update Ingress
@@ -346,8 +348,9 @@ kubectl get certificate -n rr-app
 
 **Expected:**
 
-NAME         READY
-rr-app-tls   True
+| NAME        | READY   |
+|-------------|---------|
+| rr-app-tls    | True |
 
 **Check secret:**
 
