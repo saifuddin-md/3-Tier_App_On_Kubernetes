@@ -17,7 +17,8 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
   --set controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-nlb-target-type"="ip"
 ```
 
-This ensures AWS creates an NLB.
+**This ensures AWS creates an NLB.**
+---
 =============================================================================================================
 
 ## Step 1: Install NGINX Ingress Controller
