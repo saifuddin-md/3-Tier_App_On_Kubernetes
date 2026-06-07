@@ -38,7 +38,6 @@ kubectl get pods -n ingress-nginx
 ```
 **Expected:**
 
-|------------------------------------------|
 | ingress-nginx-controller-xxxxx   Running |
 
 ---
