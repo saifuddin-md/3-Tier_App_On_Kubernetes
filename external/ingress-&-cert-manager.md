@@ -42,6 +42,8 @@ kubectl get pods -n ingress-nginx
 
 ingress-nginx-controller-xxxxx   Running
 
+---
+
 ## Step 2: Verify Controller Service
 
 ```bash
@@ -69,6 +71,8 @@ kubectl describe pod <pod-name> -n ingress-nginx
 ```bash
 a1b2c3d4.ap-south-1.elb.amazonaws.com
 ```
+---
+
 ## Step 3: Verify Your Services
 
 
@@ -83,6 +87,7 @@ ct-backend-service    ClusterIP   5000/TCP
 
 *If they exist, continue.*
 
+---
 
 ## Step 4: Create Ingress
 
@@ -123,16 +128,12 @@ spec:
 
 **Apply:**
 
-
-
 ```bash
 kubectl apply -f ingress.yaml
 ```
-
+---
 
 ## Step 5: Verify Ingress
-
-
 
 ```bash
 kubectl get ingress -n rr-app
@@ -143,8 +144,6 @@ kubectl get ingress -n rr-app
 NAME             CLASS   HOSTS
 rr-app-ingress   nginx   app.example.com
 
-
-
 ```bash
 kubectl describe ingress rr-app-ingress -n rr-app
 
@@ -152,6 +151,7 @@ kubectl logs -n ingress-nginx <controller-pod>
 
 kubectl get ingressclass
 ```
+---
 
 ## Step 6: Configure DNS
 
@@ -165,6 +165,7 @@ a1b2c3d4.ap-south-1.elb.amazonaws.com
 
 (the hostname from Step 2)
 
+---
 
 ## Step 7: Test HTTP
 
@@ -178,6 +179,7 @@ http://app.example.com/api
 
 At this stage everything works over HTTP.
 
+---
 
 ## Step 8: Add HTTPS with cert-manager
 
