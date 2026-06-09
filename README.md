@@ -1,7 +1,7 @@
 # 3-Tier_App_On_Kubernetes
 
 
-# 🚀 Deploy Database (mongodb)
+## Task 1: Deploy Database (mongodb)
 
 ## Step 1 - **Create namespace (rr-app):**
 
@@ -28,7 +28,7 @@ kubectl get pv
 kubectl get pvc -n rr-app
 kubectl config set-context --current --namespace rr-app  # set default namespace as rr-app
 ```
-## Step 3 — Initialize Replica Set First
+## Step 3 - Initialize Replica Set First
 
 ```bash
 kubectl exec -it mongo-0 -n rr-app -- mongo
@@ -60,9 +60,6 @@ rs.status()
 
 ```bash
 kubectl exec -i mongo-0 -n rr-app -- mongo < init.js
-oR
-kubectl exec -i mongo-0 -n rr-app -- \
-mongo "mongodb://mongo-0.mongo-svc:27017,mongo-1.mongo-svc:27017,mongo-2.mongo-svc:27017/restaurant_reviews?replicaSet=rs0" < init.js
 ```
 
 ## Step 5 - Verify Data
@@ -94,7 +91,7 @@ db.restaurants.find().pretty()
 db.reviews.find().pretty()
 ```
 ---
-## Check mongo-1 receives replicated data
+**Check (mongo-1 secondry receives replicated data)**
 
 ```bash
 kubectl exec -it mongo-1 -n rr-app -- mongo   
@@ -114,19 +111,8 @@ rs.slaveOk()
 ```bash
 show collections
 ```
-**Check data:**
-
-```bash
-db.restaurants.find().pretty()
-```
-
-**Check reviews:**
-```bash
-db.reviews.find().pretty()
-```
-
-
-# 🚀 Deploy Application
+---
+## Task 2: Deploy Application
 
 Make scripts executable:
 
