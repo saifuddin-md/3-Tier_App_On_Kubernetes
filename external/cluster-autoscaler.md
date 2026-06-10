@@ -12,7 +12,7 @@ kubectl apply -f platform/cluster-autoscaler/deployment.yaml
 kubectl get pods -n kube-system | grep cluster-autoscaler
 
 kubectl logs -n kube-system deployment/cluster-autoscaler
-```bash
+```
 
 **Before applying, make sure:**
 
