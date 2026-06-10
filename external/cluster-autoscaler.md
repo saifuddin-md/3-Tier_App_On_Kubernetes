@@ -1,6 +1,15 @@
 
 ## Download and Customize official manifest with:
 
+**Download**
+```bash
+mkdir -p platform/cluster-autoscaler
+
+curl -o platform/cluster-autoscaler/cluster-autoscaler.yaml \
+https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
+```
+**Customize**
+
 1. Cluster name changed.
    ```yaml
    --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/<YOUR CLUSTER NAME>
@@ -11,15 +20,8 @@
    annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::<ACCOUNT_ID>:role/EKSClusterAutoscalerRole
    ```
-**Download**
-```bash
-mkdir -p platform/cluster-autoscaler
 
-curl -o platform/cluster-autoscaler/cluster-autoscaler.yaml \
-https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
-```
-
-**Edit**
+**Open**
 ```bash
 nano platform/cluster-autoscalercluster-autoscaler.yaml
 ```
