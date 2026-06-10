@@ -2,7 +2,10 @@
 ## Download and Customize official manifest with:
 
 1. Cluster name changed.
-2. IRSA annotation added.
+   ```yaml
+   --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/<YOUR CLUSTER NAME>
+   ```
+3. IRSA annotation added.
    
    ```yaml
    annotations:
@@ -18,7 +21,7 @@ https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscale
 
 **Edit**
 ```bash
-*nano cluster-autoscaler.yaml*
+nano platform/cluster-autoscalercluster-autoscaler.yaml
 ```
 
 ```yaml
@@ -209,9 +212,7 @@ spec:
 
 **Apply:**
 ```bash
-kubectl apply -f platform/cluster-autoscaler/rbac.yaml
-
-kubectl apply -f platform/cluster-autoscaler/deployment.yaml
+kubectl apply -f platform/cluster-autoscaler/cluster-autoscaler.yaml
 ```
 
 
