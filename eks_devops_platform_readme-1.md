@@ -78,15 +78,12 @@ kubernetes/
 │   └── secret.yaml
 │
 ├── platform/                        # Cluster-level configs
-│   ├── cluster-autoscaler/
-│   │   ├── deployment.yaml
-│   │   └── rbac.yaml
-│   │
 │   └── monitoring/
 │       ├── prometheus.yaml
 │       └── grafana.yaml
 │
-├── external/                        # Third-party installations
+├── external/
+│   ├── cluster-autoscaler.md                      # Third-party installations
 │   ├── ingress-&-cert-manager.md
 │   └── metrics-server.md
 │
