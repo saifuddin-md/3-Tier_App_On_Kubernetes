@@ -235,10 +235,7 @@ kubectl logs -n kube-system deployment/cluster-autoscaler
   ```
 3. **Your node group's ASG has the required Cluster Autoscaler tags.**
 ```sql
-- *EKS node group's Auto Scaling Group must have:*
   k8s.io/cluster-autoscaler/enabled = true
   k8s.io/cluster-autoscaler/rr-cluster = owned
-
-  *Without these tags, auto-discovery will not find the node group.*
   ```
 4. **The autoscaler version matches your Kubernetes/EKS version.**
