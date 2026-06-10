@@ -82,17 +82,13 @@ kubernetes/
 │   │   ├── deployment.yaml
 │   │   └── rbac.yaml
 │   │
-│   ├── metrics-server/
-│   │   └── components.yaml
-│   │
 │   └── monitoring/
 │       ├── prometheus.yaml
 │       └── grafana.yaml
 │
 ├── external/                        # Third-party installations
-│   ├── ingress-nginx.md
-│   ├── cert-manager.md
-│   └── aws-load-balancer-controller.md
+│   ├── ingress-&-cert-manager.md
+│   └── metrics-server.md
 │
 ├── scripts/
 │   ├── deploy.sh
