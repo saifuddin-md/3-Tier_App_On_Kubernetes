@@ -225,19 +225,20 @@ kubectl logs -n kube-system deployment/cluster-autoscaler
 
 ## Before applying, make sure:
 
-- **IRSA IAM role exists,** (Role with Autoscaler permissions attached).
-- **OIDC provider is associated with your EKS cluster.**
+1. **IRSA IAM role exists,** 
+- Role with Autoscaler permissions attached.
+  
+3. **OIDC provider is associated with your EKS cluster.**
+   
   ```bash
-  aws eks describe-cluster \
-  --name rr-cluster \
-  --query "cluster.identity.oidc.issuer"
+  aws eks describe-cluster --name rr-cluster --query "cluster.identity.oidc.issuer"
   ```
-- **Your node group's ASG has the required Cluster Autoscaler tags.**
-  *EKS node group's Auto Scaling Group must have:*
+3. **Your node group's ASG has the required Cluster Autoscaler tags.**
+- EKS node group's Auto Scaling Group must have:
   ```sql
   k8s.io/cluster-autoscaler/enabled = true
-
   k8s.io/cluster-autoscaler/rr-cluster = owned
   ```
   *Without these tags, auto-discovery will not find the node group.*
-- **The autoscaler version matches your Kubernetes/EKS version.**
+  
+4. **The autoscaler version matches your Kubernetes/EKS version.**
