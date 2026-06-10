@@ -224,6 +224,7 @@ kubectl get pods -n kube-system | grep cluster-autoscaler
 
 kubectl logs -n kube-system deployment/cluster-autoscaler
 ```
+---
 
 ## Before applying, make sure:
 
