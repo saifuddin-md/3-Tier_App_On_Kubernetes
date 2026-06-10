@@ -1,4 +1,26 @@
 
+## Download and Customize official manifest with:
+
+1. Cluster name changed.
+2. IRSA annotation added.
+   
+   ```yaml
+   annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::<ACCOUNT_ID>:role/EKSClusterAutoscalerRole
+   ```
+**Download**
+```bash
+mkdir -p platform/cluster-autoscaler
+
+curl -o platform/cluster-autoscaler/cluster-autoscaler.yaml \
+https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
+```
+
+**Edit**
+```bash
+*nano cluster-autoscaler.yaml*
+```
+
 ```yaml
 ---
 apiVersion: v1
