@@ -225,10 +225,9 @@ kubectl logs -n kube-system deployment/cluster-autoscaler
 
 ## Before applying, make sure:
 
-1. **IRSA IAM role exists,** 
-- *Role with Autoscaler permissions attached.*
+1. **IRSA IAM role exists,** (*Role with Autoscaler permissions attached.*)
   
-3. **OIDC provider is associated with your EKS cluster.**
+2. **OIDC provider is associated with your EKS cluster.**
    
   ```sql
   aws eks describe-cluster --name rr-cluster --query "cluster.identity.oidc.issuer"
