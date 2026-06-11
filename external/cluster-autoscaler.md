@@ -1,7 +1,7 @@
 ## Task 1: 
 ### Step 1: Find OIDC Issuer URL
 
-**Go to:** EKS → Clusters → Overview → checks the OIDC issuer URL.
+- **Go to:** EKS → Clusters → Overview → checks the OIDC issuer URL.
 or
 ```bash
 aws eks describe-cluster \
@@ -17,16 +17,15 @@ eksctl utils associate-iam-oidc-provider \
   --cluster rr-app-cluster \
   --approve
 ```
+**Verify:**
 
-**Verify OIDC Provider:**
+- **Go to:** IAM → Identity providers
 
-**Go to:** IAM → Identity providers
-
-**Note:** Without this, IRSA cannot work.
+- **Note:** Without this, IRSA cannot work.
 
 ### Step 4: Create Custom IAM Policy
 
-**Go to:** IAM → Policies → Create policy → **Select:** JSON
+- **Go to:** IAM → Policies → Create policy → **Select:** JSON
 
 **Paste:**
 
@@ -67,12 +66,12 @@ eksctl utils associate-iam-oidc-provider \
 
 **Click:** Create policy
 
-**Note:** AWS does not provide an AWS-managed IAM policy specifically for Cluster Autoscaler.
-**Note:** For the Amazon EBS CSI Driver, AWS provides managed policies.
+- **Note:** AWS does not provide an AWS-managed IAM policy specifically for Cluster Autoscaler.
+- **Note:** For the Amazon EBS CSI Driver, AWS provides managed policies.
 
 ### Step 5: Create IAM Role
 
-**Go to:** IAM → Roles → Create role
+- **Go to:** IAM → Roles → Create role
 
 **Choose:** Web identity
 
@@ -92,7 +91,7 @@ eksctl utils associate-iam-oidc-provider \
 
 ### Step 7: Edit Trust Policy  *(Who is allowed to assume (use) this role?)*
 
-**Open:** IAM → Roles → rr-app-cluster-autoscaler → Trust Relationships → Edit trust policy
+- **Open:** IAM → Roles → rr-app-cluster-autoscaler → Trust Relationships → Edit trust policy
 
 Find: "Condition": {} or existing conditions.
 
