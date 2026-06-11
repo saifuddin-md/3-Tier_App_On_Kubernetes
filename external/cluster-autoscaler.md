@@ -1,10 +1,7 @@
 ## Task 1: 
-## Step 1: Find OIDC Issuer URL
+### Step 1: Find OIDC Issuer URL
 
-**Go to:**
-
-EKS → Clusters → Overview → checks the OIDC issuer URL.
-
+**Go to:** EKS → Clusters → Overview → checks the OIDC issuer URL.
 or
 ```bash
 aws eks describe-cluster \
@@ -13,7 +10,8 @@ aws eks describe-cluster \
   --output text
 ```
 
-## Step 2: Creates/associates the IAM OIDC Provider in AWS.
+### Step 2: Creates the IAM OIDC Provider in AWS.
+
 ```bash
 eksctl utils associate-iam-oidc-provider \
   --cluster rr-app-cluster \
@@ -22,19 +20,13 @@ eksctl utils associate-iam-oidc-provider \
 
 **Verify OIDC Provider:**
 
-**Go to:**
-
-IAM → Identity providers
+**Go to:** IAM → Identity providers
 
 **Note:** Without this, IRSA cannot work.
 
-## Step 4: Create Custom IAM Policy
+### Step 4: Create Custom IAM Policy
 
-**Go to:**
-
-IAM → Policies → Create policy
-
-**Select:** JSON
+**Go to:** IAM → Policies → Create policy → **Select:** JSON
 
 **Paste:**
 
@@ -78,43 +70,33 @@ IAM → Policies → Create policy
 **Note:** AWS does not provide an AWS-managed IAM policy specifically for Cluster Autoscaler.
 **Note:** For the Amazon EBS CSI Driver, AWS provides managed policies.
 
-## Step 5: Create IAM Role
+### Step 5: Create IAM Role
 
-**Go to:**
-
-IAM → Roles → Create role
+**Go to:** IAM → Roles → Create role
 
 **Choose:** Web identity
 
-**Provider:** Select your OIDC provider.
+**Provider:** **Select** your OIDC provider.
 
-**Audience:**
-
-**Select:** sts.amazonaws.com
+**Audience:** **Select:** sts.amazonaws.com
 
 **Click:** Next
 
-## Step 6: Attach Policy
+### Step 6: Attach Policy
 
 **Select:** *rr-app-cluster-autoscaler-policy*
 
 **Click:** Next
 
-**Role Name:** rr-app-cluster-autoscaler
+**Role Name:** rr-app-cluster-autoscaler then **Create Role**.
 
-Create Role.
+### Step 7: Edit Trust Policy  *(Who is allowed to assume (use) this role?)*
 
-## Step 7: Edit Trust Policy  *(Who is allowed to assume (use) this role?)*
+**Open:** IAM → Roles → rr-app-cluster-autoscaler → Trust Relationships → Edit trust policy
 
-**Open:**
+Find: "Condition": {} or existing conditions.
 
-IAM → Roles → rr-app-cluster-autoscaler → Trust Relationships → Edit trust policy
-
-Find: "Condition": {}
-
-or existing conditions.
-
-**Change it so only: "system:serviceaccount:kube-system:cluster-autoscaler" can use the role.**
+**Change it so only:** "system:serviceaccount:kube-system:cluster-autoscaler" can use the role."
 
 **Example:**
 
@@ -130,7 +112,7 @@ or existing conditions.
 ```
 Save.
 
-## Step 8: Copy Role ARN
+### Step 8: Copy Role ARN
 
 **Copy it:** Update ARN on ServiceAccount
 
