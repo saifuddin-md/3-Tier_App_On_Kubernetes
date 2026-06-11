@@ -25,6 +25,7 @@ nano platform/cluster-autoscalercluster-autoscaler.yaml
    annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/rr-app-cluster-autoscaler
    ```
+**YAML**
 ```yaml
 ---
 apiVersion: v1
@@ -35,6 +36,8 @@ metadata:
     k8s-app: cluster-autoscaler
   name: cluster-autoscaler
   namespace: kube-system
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/rr-app-cluster-autoscaler
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
