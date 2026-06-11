@@ -8,24 +8,23 @@ mkdir -p platform/cluster-autoscaler
 curl -o platform/cluster-autoscaler/cluster-autoscaler.yaml \
 https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
 ```
-**Customize**
-
-1. Cluster name changed.
-   ```yaml
-   --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/<YOUR CLUSTER NAME>
-   ```
-3. IRSA annotation added.
-   
-   ```yaml
-   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::<ACCOUNT_ID>:role/EKSClusterAutoscalerRole
-   ```
-
 **Open**
 ```bash
 nano platform/cluster-autoscalercluster-autoscaler.yaml
 ```
 
+**Update**
+
+1. Cluster name.
+   ```yaml
+   --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/<YOUR CLUSTER NAME>
+   ```
+2. IRSA annotation.
+   
+   ```yaml
+   annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/rr-app-cluster-autoscaler
+   ```
 ```yaml
 ---
 apiVersion: v1
