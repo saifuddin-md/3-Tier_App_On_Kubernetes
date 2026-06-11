@@ -14,11 +14,13 @@ nano platform/cluster-autoscalercluster-autoscaler.yaml
 ```
 
 **Update**
+```yaml
 1. Cluster name:
-  - **--node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/<YOUR CLUSTER NAME>**
+       **--node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/<YOUR CLUSTER NAME>**
 3. IRSA annotation:
   - **annotations:
       eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/rr-app-cluster-autoscaler**
+```
 
 **YAML**
 ```yaml
