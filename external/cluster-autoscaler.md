@@ -67,13 +67,9 @@ eksctl utils associate-iam-oidc-provider \
 ### Step 3: Create IAM Role
 
 - **Go to:** IAM → Roles → Create role
-
 - **Choose:** Web identity
-
-- **Provider:** **Select** your OIDC provider.
-
-- **Audience:** **Select:** sts.amazonaws.com
-
+- **Identity Provider** → Select your EKS OIDC Provider
+- **Audience:** Select: sts.amazonaws.com
 - **Click:** Next
 
 ### Step 4: Attach Policy
