@@ -1,23 +1,24 @@
-### Step 1: Find OIDC Issuer URL
+### Step 1: Check OIDC Provider Exists
 
-- **Go to:** EKS → Clusters → Overview → checks the OIDC issuer URL.
-or
+- **Go to:** EKS → Clusters → Overview → **Checks** the OIDC issuer URL.
+- **Verify your EKS cluster has an OIDC provider associated.**
+
 ```bash
 aws eks describe-cluster --name rr-app-cluster --query "cluster.identity.oidc.issuer" --output text
 ```
-
-### Step 2: Creates the IAM OIDC Provider in AWS.
+- **If you get an OIDC URL, good.**
+- **If not, create it:**
 
 ```bash
-eksctl utils associate-iam-oidc-provider --cluster rr-app-cluster --approve
+eksctl utils associate-iam-oidc-provider \
+  --cluster my-cluster \
+  --approve
 ```
-**Verify:**
-
+- **Verify:**
 - **Go to:** IAM → Identity providers
-
 - **Note:** Without this, IRSA cannot work.
 
-### Step 3: Create Custom IAM Policy
+### Step 2: Create Custom IAM Policy
 
 - **Go to:** IAM → Policies → Create policy → **Select:** JSON
 
@@ -63,7 +64,7 @@ eksctl utils associate-iam-oidc-provider --cluster rr-app-cluster --approve
 - **Note:** AWS does not provide an AWS-managed IAM policy specifically for Cluster Autoscaler.
 - **Note:** For the Amazon EBS CSI Driver, AWS provides managed policies.
 
-### Step 4: Create IAM Role
+### Step 3: Create IAM Role
 
 - **Go to:** IAM → Roles → Create role
 
@@ -75,7 +76,7 @@ eksctl utils associate-iam-oidc-provider --cluster rr-app-cluster --approve
 
 - **Click:** Next
 
-### Step 5: Attach Policy
+### Step 4: Attach Policy
 
 - **Select:** rr-app-cluster-autoscaler-policy
 
@@ -83,7 +84,7 @@ eksctl utils associate-iam-oidc-provider --cluster rr-app-cluster --approve
 
 - **Role Name:** rr-app-cluster-autoscaler then **Create Role**.
 
-### Step 6: Edit Trust Policy  *(Who is allowed to assume (use) this role?)*
+### Step 5: Edit Trust Policy  *(Who is allowed to assume (use) this role?)*
 
 - **Open:** IAM → Roles → rr-app-cluster-autoscaler → Trust Relationships → Edit trust policy
 
@@ -103,13 +104,13 @@ eksctl utils associate-iam-oidc-provider --cluster rr-app-cluster --approve
 ```
 Save.
 
-### Step 7: Copy Role ARN
+### Step 6: Copy Role ARN
 
 - **Copy it:** Update ARN on ServiceAccount
 
 ---
 
-## step 8: Download and Edit official manifest with:
+### step 7: Download and Edit official manifest with:
 
 - **Download & Open**
 ```bash
