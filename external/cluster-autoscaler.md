@@ -334,13 +334,12 @@ kubectl logs -n kube-system deployment/cluster-autoscaler
 ```
 ---
 
-## Before applying, make sure:
+## *Before applying, make sure:*
 
 1. **OIDC provider is associated with your EKS cluster.**
-2. 
-3. **IRSA IAM role exists.**
+2. **IRSA IAM role exists.**
    
-4. **Your node group's ASG has the required Cluster Autoscaler tags.**
+3. **Your node group's ASG has the required Cluster Autoscaler tags.**
 ```sql
   k8s.io/cluster-autoscaler/enabled = true
   k8s.io/cluster-autoscaler/rr-cluster = owned
