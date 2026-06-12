@@ -4,18 +4,13 @@
 - **Go to:** EKS → Clusters → Overview → checks the OIDC issuer URL.
 or
 ```bash
-aws eks describe-cluster \
-  --name rr-app-cluster \
-  --query "cluster.identity.oidc.issuer" \
-  --output text
+aws eks describe-cluster --name rr-app-cluster --query "cluster.identity.oidc.issuer" --output text
 ```
 
 ### Step 2: Creates the IAM OIDC Provider in AWS.
 
 ```bash
-eksctl utils associate-iam-oidc-provider \
-  --cluster rr-app-cluster \
-  --approve
+eksctl utils associate-iam-oidc-provider --cluster rr-app-cluster --approve
 ```
 **Verify:**
 
@@ -60,11 +55,11 @@ eksctl utils associate-iam-oidc-provider \
 }
 ```
 
-**Click:** Next
+- **Click:** Next
 
-**Policy name:** *rr-app-cluster-autoscaler-policy*
+- **Policy name:** rr-app-cluster-autoscaler-policy
 
-**Click:** Create policy
+- **Click:** Create policy
 
 - **Note:** AWS does not provide an AWS-managed IAM policy specifically for Cluster Autoscaler.
 - **Note:** For the Amazon EBS CSI Driver, AWS provides managed policies.
@@ -73,39 +68,37 @@ eksctl utils associate-iam-oidc-provider \
 
 - **Go to:** IAM → Roles → Create role
 
-**Choose:** Web identity
+- **Choose:** Web identity
 
-**Provider:** **Select** your OIDC provider.
+- **Provider:** **Select** your OIDC provider.
 
-**Audience:** **Select:** sts.amazonaws.com
+- **Audience:** **Select:** sts.amazonaws.com
 
-**Click:** Next
+- **Click:** Next
 
 ### Step 6: Attach Policy
 
-**Select:** *rr-app-cluster-autoscaler-policy*
+- **Select:** rr-app-cluster-autoscaler-policy
 
-**Click:** Next
+- **Click:** Next
 
-**Role Name:** rr-app-cluster-autoscaler then **Create Role**.
+- **Role Name:** rr-app-cluster-autoscaler then **Create Role**.
 
 ### Step 7: Edit Trust Policy  *(Who is allowed to assume (use) this role?)*
 
 - **Open:** IAM → Roles → rr-app-cluster-autoscaler → Trust Relationships → Edit trust policy
 
-Find: "Condition": {} or existing conditions.
+- Find: "Condition": {} or existing conditions.
 
-**Change it so only:** "system:serviceaccount:kube-system:cluster-autoscaler" can use the role."
+*- *Change it so only:** "system:serviceaccount:kube-system:cluster-autoscaler" can use the role."
 
 **Example:**
 
 ```json
 "Condition": {
   "StringEquals": {
-    "oidc.eks.ap-south-1.amazonaws.com/id/ABCD123456789:sub":
-      "system:serviceaccount:kube-system:cluster-autoscaler",
-    "oidc.eks.ap-south-1.amazonaws.com/id/ABCD123456789:aud":
-      "sts.amazonaws.com"
+    "oidc.eks.ap-south-1.amazonaws.com/id/ABCD123456789:sub": "system:serviceaccount:kube-system:cluster-autoscaler",
+    "oidc.eks.ap-south-1.amazonaws.com/id/ABCD123456789:aud": "sts.amazonaws.com"
   }
 }
 ```
@@ -113,25 +106,23 @@ Save.
 
 ### Step 8: Copy Role ARN
 
-**Copy it:** Update ARN on ServiceAccount
+- **Copy it:** Update ARN on ServiceAccount
 
 ---
 
 ## Task 2: Download and Customize official manifest with:
 
-**Download**
+- **Download & Open**
 ```bash
 mkdir -p platform/cluster-autoscaler
 
 curl -o platform/cluster-autoscaler/cluster-autoscaler.yaml \
 https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
-```
-**Open**
-```bash
+
 nano platform/cluster-autoscalercluster-autoscaler.yaml
 ```
 
-**Update**
+**Edit**
 ```yaml
 1. Cluster name:
        --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/<YOUR CLUSTER NAME>
