@@ -1,4 +1,3 @@
-## Task 1: 
 ### Step 1: Find OIDC Issuer URL
 
 - **Go to:** EKS → Clusters → Overview → checks the OIDC issuer URL.
@@ -18,7 +17,7 @@ eksctl utils associate-iam-oidc-provider --cluster rr-app-cluster --approve
 
 - **Note:** Without this, IRSA cannot work.
 
-### Step 4: Create Custom IAM Policy
+### Step 3: Create Custom IAM Policy
 
 - **Go to:** IAM → Policies → Create policy → **Select:** JSON
 
@@ -64,7 +63,7 @@ eksctl utils associate-iam-oidc-provider --cluster rr-app-cluster --approve
 - **Note:** AWS does not provide an AWS-managed IAM policy specifically for Cluster Autoscaler.
 - **Note:** For the Amazon EBS CSI Driver, AWS provides managed policies.
 
-### Step 5: Create IAM Role
+### Step 4: Create IAM Role
 
 - **Go to:** IAM → Roles → Create role
 
@@ -76,7 +75,7 @@ eksctl utils associate-iam-oidc-provider --cluster rr-app-cluster --approve
 
 - **Click:** Next
 
-### Step 6: Attach Policy
+### Step 5: Attach Policy
 
 - **Select:** rr-app-cluster-autoscaler-policy
 
@@ -84,7 +83,7 @@ eksctl utils associate-iam-oidc-provider --cluster rr-app-cluster --approve
 
 - **Role Name:** rr-app-cluster-autoscaler then **Create Role**.
 
-### Step 7: Edit Trust Policy  *(Who is allowed to assume (use) this role?)*
+### Step 6: Edit Trust Policy  *(Who is allowed to assume (use) this role?)*
 
 - **Open:** IAM → Roles → rr-app-cluster-autoscaler → Trust Relationships → Edit trust policy
 
@@ -104,13 +103,13 @@ eksctl utils associate-iam-oidc-provider --cluster rr-app-cluster --approve
 ```
 Save.
 
-### Step 8: Copy Role ARN
+### Step 7: Copy Role ARN
 
 - **Copy it:** Update ARN on ServiceAccount
 
 ---
 
-## Task 2: Download and Customize official manifest with:
+## step 8: Download and Edit official manifest with:
 
 - **Download & Open**
 ```bash
