@@ -52,7 +52,7 @@ The platform includes:
 
 ---
 
-# 📂 Repository Structure
+## Repository Structure
 
 ```bash
 kubernetes/
@@ -61,29 +61,21 @@ kubernetes/
 │   ├── namespace.yaml
 │   │
 │   ├── frontend/
-│   │   ├── deployment.yaml
-│   │   ├── service.yaml
+│   │   ├── frontend-deployment.yaml
 │   │   ├── ingress.yaml
 │   │   └── hpa.yaml
 │   │
 │   └── backend/
-│       ├── deployment.yaml
-│       ├── service.yaml
+│       ├── backend-deployment.yaml
 │       └── hpa.yaml
 │
 ├── database/                        # Stateful components
-│   ├── deployment.yaml
-│   ├── service.yaml
-│   ├── pvc.yaml
-│   └── secret.yaml
+│   ├── mongo-statefulset.yaml
+│   └── mongo-secret.yaml
 │
-├── platform/                        # Cluster-level configs
-│   └── monitoring/
-│       ├── prometheus.yaml
-│       └── grafana.yaml
-│
-├── external/
-│   ├── cluster-autoscaler.md                      # Third-party installations
+├── external/                        # Third-party installations
+│   ├── EBS_CSI_Driver.md
+│   ├── cluster-autoscaler.md                      
 │   ├── ingress-&-cert-manager.md
 │   └── metrics-server.md
 │
