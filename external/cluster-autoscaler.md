@@ -5,7 +5,7 @@
 
 - The Cluster Autoscaler runs as a Pod inside Kubernetes. Pods don't have AWS credentials by default. **OIDC + IRS**A lets the Pod securely assume an IAM Role to interact with AWS Auto Scaling Groups.
 
-### Step 1: Check OIDC Provider Exists
+### Step 1: Check/Create OIDC Provider Exists
 
 - **Go to:** EKS → Clusters → Overview → **Checks** the OIDC issuer URL.
 - **Verify your EKS cluster has an OIDC provider associated.**
@@ -13,7 +13,7 @@
 ```bash
 aws eks describe-cluster --name rr-app-cluster --query "cluster.identity.oidc.issuer" --output text
 ```
-- **If you get an OIDC URL, good.**
+- **If you get, good.**
 - **If not, create it:**
 
 ```bash
