@@ -29,7 +29,7 @@
 ```bash
 aws eks describe-cluster --name rr-app-cluster --query "cluster.identity.oidc.issuer" --output text
 ```
-- **If you get an OIDC URL, good.**
+- **If you get, good.**
 - **If not, create it:**
 
 ```bash
