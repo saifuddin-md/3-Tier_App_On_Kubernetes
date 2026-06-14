@@ -125,7 +125,8 @@ Save.
 
 ---
 
-### step 7: Download and Edit official manifest with:
+### step 7: Download & Edit official manifest with:
+- **Annotate ServiceAccount with IAM Role ARN (IRSA)**
 
 - **Download & Open**
 ```bash
@@ -133,11 +134,13 @@ mkdir -p platform/cluster-autoscaler
 
 curl -o platform/cluster-autoscaler/cluster-autoscaler.yaml \
 https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
+```
+**Edit**
 
+```
 nano platform/cluster-autoscalercluster-autoscaler.yaml
 ```
 
-**Edit**
 ```yaml
 1. Cluster name:
        --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/<YOUR CLUSTER NAME>
