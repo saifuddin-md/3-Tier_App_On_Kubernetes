@@ -1,3 +1,10 @@
+## Cluster Autoscaler Setup on Amazon EKS
+- Cluster Autoscaler automatically adds or removes worker nodes in an EKS cluster based on workload, ensuring high availability, efficient resource utilization, and cost optimization.
+
+**Why OIDC + IRSA?**
+
+- The Cluster Autoscaler runs as a Pod inside Kubernetes. Pods don't have AWS credentials by default. **OIDC + IRS**A lets the Pod securely assume an IAM Role to interact with AWS Auto Scaling Groups.
+
 ### Step 1: Check OIDC Provider Exists
 
 - **Go to:** EKS → Clusters → Overview → **Checks** the OIDC issuer URL.
