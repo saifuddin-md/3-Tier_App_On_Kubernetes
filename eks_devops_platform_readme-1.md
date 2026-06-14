@@ -92,28 +92,11 @@ kubernetes/
 ---
 
 # 🧠 Why This Structure Is Strong
-
-## ✅ Repository owns:
-
-- Application manifests
-- Database configuration
-- Autoscaling configuration
-- Monitoring setup
-- Operational scripts
-
-## ✅ External vendors own:
-
-- NGINX Ingress Controller
-- cert-manager
-- AWS Load Balancer Controller
-
-This avoids storing huge third-party manifests inside the repository and keeps ownership boundaries clean.
-
 ---
 
-# ⚙️ Prerequisites
+## Prerequisites
 
-Install the following tools:
+- Install the following tools:
 
 - AWS CLI
 - kubectl
@@ -122,7 +105,7 @@ Install the following tools:
 - Docker
 - Jenkins
 
-Verify:
+**Verify:**
 
 ```bash
 kubectl version --client
@@ -132,7 +115,7 @@ aws --version
 
 ---
 
-# ☁️ Create EKS Cluster
+## Create EKS Cluster
 
 Create EKS cluster manually using eksctl:
 
@@ -164,34 +147,15 @@ kubectl get nodes
 
 ---
 
-# 🌐 Install NGINX Ingress Controller
+## 1. Install NGINX Ingress Controller
 
-File:
+**File:**
 
 ```text
 external/ingress-nginx.md
 ```
 
-Install:
-
-```bash
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo update
-
-helm install ingress-nginx ingress-nginx/ingress-nginx \
-  --namespace ingress-nginx \
-  --create-namespace
-```
-
-Verify:
-
-```bash
-kubectl get pods -n ingress-nginx
-```
-
----
-
-# 🔐 Install cert-manager
+## 2. Install cert-manager
 
 File:
 
@@ -199,50 +163,20 @@ File:
 external/cert-manager.md
 ```
 
-Install:
+## 3. Deploy Metrics Server
 
-```bash
-helm repo add jetstack https://charts.jetstack.io
-helm repo update
-
-helm install cert-manager jetstack/cert-manager \
-  --namespace cert-manager \
-  --create-namespace \
-  --set installCRDs=true
+```text
+external/metrics-server.md
 ```
+## 4. Installation and Setup EBS CSI Driver
 
-Verify:
-
-```bash
-kubectl get pods -n cert-manager
+```text
+external/EBS_CSI_Driver.md
 ```
+## 5. Setup Cluster autoscaler
 
----
-
-# 📈 Deploy Metrics Server
-
-```bash
-kubectl apply -f kubernetes/platform/metrics-server/
-```
-
-Verify:
-
-```bash
-kubectl top nodes
-```
-
----
-
-# ⚡ Deploy Cluster Autoscaler
-
-```bash
-kubectl apply -f kubernetes/platform/cluster-autoscaler/
-```
-
-Verify:
-
-```bash
-kubectl get pods -n kube-system
+```text
+external/cluster-autoscaler.md
 ```
 
 ---
