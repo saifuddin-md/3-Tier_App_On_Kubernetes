@@ -9,9 +9,10 @@
 2. Create IAM Role
 3. Attach AmazonEBSCSIDriverPolicy
 4. Configure Trust Relationship
-5. Install EBS CSI Driver Add-on
-6. Associate IAM Role
-7. Verify Installation
+5. Create Role
+6. Install EBS CSI Driver Add-on
+7. Select IAM Role
+8. Verify Installation
 ---
 
 ### Step 1: Check/Create OIDC Provider Exists
