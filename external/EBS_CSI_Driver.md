@@ -1,6 +1,12 @@
 
 ## EBS CSI Driver Installation and Setup on Amazon EKS
 
+- EBS CSI Driver allows Kubernetes on EKS to create, attach, mount, resize, and manage EBS volumes automatically for Pod.
+
+- **Why OIDC + IRSA?**
+
+- The EBS CSI Driver runs as a Pod inside Kubernetes. Pods don't have AWS credentials by default. **OIDC + IRSA** lets the Pod securely assume an IAM Role.
+
 ### How to Install AWS EBS CSI Driver on EKS Using IRSA
 
 **The breakdown is:**
