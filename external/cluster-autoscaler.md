@@ -5,6 +5,18 @@
 
 - The Cluster Autoscaler runs as a Pod inside Kubernetes. Pods don't have AWS credentials by default. **OIDC + IRS**A lets the Pod securely assume an IAM Role to interact with AWS Auto Scaling Groups.
 
+### How to Install Cluster Autoscaler on EKS Using IRSA
+**The breakdown is:**
+1. Check/Create OIDC Provider
+2. Create Custom IAM Policy for Cluster Autoscaler
+3. Create IAM Role
+4. Attach IAM Policy
+5. Edit Trust Policy
+6. Copy Role ARN
+7. Download and Edit official manifest
+8. Deploy Cluster Autoscaler
+9. Verify
+
 ### Step 1: Check/Create OIDC Provider Exists
 
 - **Go to:** EKS → Clusters → Overview → **Checks** the OIDC issuer URL.
@@ -323,14 +335,15 @@ spec:
           hostPath:
             path: "/etc/ssl/certs/ca-bundle.crt"
 ```
+### Step 8: Deploy Cluster Autoscaler
 
 **Apply:**
 ```bash
 kubectl apply -f platform/cluster-autoscaler/cluster-autoscaler.yaml
 ```
 
+### step 8: Verify:
 
-**Verify:**
 ```bash
 kubectl get pods -n kube-system | grep cluster-autoscaler
 
