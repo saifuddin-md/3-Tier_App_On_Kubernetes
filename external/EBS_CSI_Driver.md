@@ -48,7 +48,7 @@ eksctl utils associate-iam-oidc-provider \
 
 - **Click:** Next.
 
-## Step 3: Configure Trust Relationship
+### Step 4: Configure Trust Relationship
 
 AWS needs to know which Kubernetes ServiceAccount can assume this role.
 
@@ -75,7 +75,7 @@ The trust policy should look similar to:
 
 ```
 
-### Step 4: Create Role
+### Step 5: Create Role
 
 - **Give role a name:** AmazonEKS_EBS_CSI_DriverRole
 
@@ -83,7 +83,7 @@ The trust policy should look similar to:
 
 - **Copy the role ARN**
 
-### Step 5: Install EBS CSI Driver Add-on
+### Step 6: Install EBS CSI Driver Add-on
 
 - Go to: AWS Console → EKS → Your Cluster → Add-ons
 
@@ -94,7 +94,7 @@ The trust policy should look similar to:
 
 **Click:** Next.
 
-### Step 6: Select IAM Role
+### Step 7: Select IAM Role
 
 **You'll see:** IAM Role for Service Account
 
@@ -103,7 +103,7 @@ The trust policy should look similar to:
 **Click:** Install.
 
 
-### Step 7: Verify Installation
+### Step 8: Verify Installation
 
 Check add-ons:
 
