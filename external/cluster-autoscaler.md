@@ -140,12 +140,12 @@ https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscale
 ```
 nano platform/cluster-autoscalercluster-autoscaler.yaml
 ```
-
-```yaml
-1. Cluster name:
+1. **Add Cluster name:**
+   ```bash
        --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/<YOUR CLUSTER NAME>
-
-3. IRSA annotation:
+   ``
+3. **Add IRSA annotation:**
+```bash
        annotations:
          eks.amazonaws.com/role-arn: <ARN>
 ```
