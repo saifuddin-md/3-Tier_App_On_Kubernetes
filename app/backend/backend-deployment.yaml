@@ -27,7 +27,7 @@ spec:
     metadata:
       labels:
         app: backend
-        environment: development
+        env: development
 
     spec:
       containers:
