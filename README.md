@@ -2,7 +2,8 @@
 
 ---
 ## Setup Infra
-1. *Create EKS Cluster Create EKS cluster manually using eksctl:*
+1. *Create EKS Cluster*
+   - Create EKS cluster manually using eksctl
 
 ```bash
 eksctl create cluster \
