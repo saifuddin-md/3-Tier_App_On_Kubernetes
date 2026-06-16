@@ -79,13 +79,6 @@ kubernetes/
 │   ├── ingress-&-cert-manager.md
 │   └── metrics-server.md
 │
-├── scripts/
-│   ├── deploy.sh
-│   ├── destroy.sh
-│   └── autoscaler.sh
-│
-├── Makefile
-│
 └── README.md
 ```
 
