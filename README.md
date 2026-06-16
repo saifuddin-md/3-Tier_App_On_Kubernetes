@@ -14,7 +14,7 @@ Production-style Kubernetes project deployed on Amazon EKS using raw Kubernetes 
 ---
 ## Task 1: Setup Infra
 1. *Create EKS Cluster*
-   - (external/Create-EKS-Cluster)
+   - (external/Create-EKS-Cluster.md)
 2. Install NGINX Ingress Controller
    - (external/ingress-nginx.md)
 3. Install Cert-manager
