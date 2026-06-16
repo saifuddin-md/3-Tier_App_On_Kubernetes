@@ -28,7 +28,7 @@ Production-style Kubernetes project deployed on Amazon EKS using raw Kubernetes 
 ---
 ## Task 2: Deploy Database, Backend and Frontend
 
-## Step 1 - **Create namespace (rr-app):**
+### Step 1 - **Create namespace (rr-app):**
 
 ```bash
 cd app
@@ -36,7 +36,7 @@ kubectl apply -f namespace.yaml
 kubectl get ns
 ```
 
-## Step 2 - **Deploy database (mongodb):**
+### Step 2 - **Deploy database (mongodb):**
 
 ```bash
 kubectl apply -f mongo-secret.yaml
@@ -53,7 +53,7 @@ kubectl get pv
 kubectl get pvc -n rr-app
 kubectl config set-context --current --namespace rr-app  # set default namespace as rr-app
 ```
-## Step 3 - Initialize Replica Set First
+### Step 3 - Initialize Replica Set First
 
 ```bash
 kubectl exec -it mongo-0 -n rr-app -- mongo
@@ -81,13 +81,13 @@ rs.status()
 ```
 **Ensure mongo-0 becomes PRIMARY.**
 
-## Step 4 - Execute **init.js**   (From your local machine:)
+### Step 4 - Execute **init.js**   (From your local machine:)
 
 ```bash
 kubectl exec -i mongo-0 -n rr-app -- mongo < init.js
 ```
 
-## Step 5 - Verify Data
+### Step 5 - Verify Data
 
 **Open mongo shell:**
 
@@ -137,18 +137,18 @@ rs.slaveOk()
 show collections
 ```
 ---
-## Task 2: Deploy Application
+### Step 6: Deploy Application (backend and frontend)
 
-Make scripts executable:
+
 
 ```bash
-chmod +x scripts/*.sh
+
 ```
 
 Deploy everything:
 
 ```bash
-./scripts/deploy.sh
+
 ```
 
 Verify:
