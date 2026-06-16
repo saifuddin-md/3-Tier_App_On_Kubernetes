@@ -1,6 +1,14 @@
 # 3-Tier_App_On_Kubernetes
 
-
+---
+## Setup Infra
+1. Create EKS Cluster
+2. Install NGINX Ingress Controller
+3. Install Cert-manager
+4. Deploy Metrics Server
+5. Installation and Setup EBS CSI Driver
+6.  Setup Cluster autoscaler
+---
 ## Task 1: Deploy Database (mongodb)
 
 ## Step 1 - **Create namespace (rr-app):**
