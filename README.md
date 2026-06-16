@@ -1,32 +1,9 @@
 # 3-Tier_App_On_Kubernetes
 
 ---
-## Setup Infra
+## Task 1: Setup Infra
 1. *Create EKS Cluster*
-   - Create EKS cluster manually using eksctl
-
-```bash
-eksctl create cluster \
-  --name my-eks-cluster \
-  --region ap-south-1 \
-  --nodegroup-name workers \
-  --node-type t3.medium \
-  --nodes 2 \
-  --nodes-min 1 \
-  --nodes-max 3 \
-  --managed
-```
-
-*Update kubeconfig:*
-
-```bash
-aws eks update-kubeconfig --region ap-south-1 --name my-eks-cluster
-```
-*Verify cluster:*
-
-```bash
-kubectl get nodes
-```
+   - (external/Create-EKS-Cluster)
 2. Install NGINX Ingress Controller
    - (external/ingress-nginx.md)
 3. Install Cert-manager
@@ -38,7 +15,7 @@ kubectl get nodes
 6.  Setup Cluster autoscaler
    - (external/cluster-autoscaler.md)
 ---
-## Task 1: Deploy Database (mongodb)
+## Task 2: Deploy Database, Backend and Frontend
 
 ## Step 1 - **Create namespace (rr-app):**
 
