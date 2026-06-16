@@ -1,11 +1,6 @@
 # 3-Tier_App_On_Kubernetes
-
-Production-style Kubernetes project deployed on Amazon EKS using raw Kubernetes manifests, Jenkins CI/CD, autoscaling, ingress management, monitoring, and operational automation.
-
----
 ## Project Overview
-
-- This repository demonstrates deployment and management of a cloud-native 3-tier application architecture on Amazon EKS.
+- This repository demonstrates deployment and management of a 3-tier application architecture on Amazon EKS.
 
 **Technical Stack:**
 - **Frontend:** The frontend of this application is built using React and JavaScript. It provides a responsive and user-friendly interface.
