@@ -4,24 +4,20 @@ Production-style Kubernetes project deployed on Amazon EKS using raw Kubernetes 
 
 ---
 
-# 📌 Project Overview
+# Project Overview
 
-This repository demonstrates deployment and management of a cloud-native 3-tier application architecture on Amazon EKS.
+- This repository demonstrates deployment and management of a cloud-native 3-tier application architecture on Amazon EKS.
 
-The project follows a realistic Kubernetes repository structure used in modern DevOps environments with clear separation between:
 
-- Application workloads
-- Stateful services
-- Platform tooling
-- External dependencies
-- Operational scripts
-
-The platform includes:
-
+**Technical Stack:**
+- **Frontend:** The frontend of this application is built using React and JavaScript. It provides a responsive and user-friendly interface.
+- **Backend and API:** The backend of this application is powered by Nodejs. It serves as the API handling user requests. MongoDB is used as the database backend, configured with a replica set for data redundancy and high availability.
+  
+**Kubernetes Resources:**
 - Frontend & Backend microservices
 - Database layer with persistent storage
 - NGINX Ingress Controller
-- cert-manager
+- Cert-manager
 - Metrics Server
 - Horizontal Pod Autoscaler (HPA)
 - Cluster Autoscaler
@@ -30,25 +26,9 @@ The platform includes:
 
 ---
 
-# 🏗️ Architecture
+## Architecture
 
-```text
-                    Internet
-                        │
-                        ▼
-            NGINX Ingress Controller
-                        │
-        ┌───────────────┴───────────────┐
-        ▼                               ▼
-   Frontend Service                Backend Service
-        │                               │
-        └───────────────┬───────────────┘
-                        ▼
-                    Database
-                        │
-                        ▼
-                 Persistent Volume
-```
+
 
 ---
 
@@ -83,31 +63,7 @@ kubernetes/
 ```
 
 ---
-
-# 🧠 Why This Structure Is Strong
----
-
-## Prerequisites
-
-- Install the following tools:
-
-- AWS CLI
-- kubectl
-- eksctl
-- Helm
-- Docker
-- Jenkins
-
-**Verify:**
-
-```bash
-kubectl version --client
-helm version
-aws --version
-```
-
----
-
+## Setup Infra
 ## Create EKS Cluster
 
 Create EKS cluster manually using eksctl:
