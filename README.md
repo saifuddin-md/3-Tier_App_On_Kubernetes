@@ -8,25 +8,19 @@
   
 ---
 ## Task 1: Setup Infra
-1. *Create EKS Cluster*
-   - (external/Create-EKS-Cluster.md)
-2. Install NGINX Ingress Controller
-   - (external/ingress-nginx.md)
-3. Install Cert-manager
-   - (external/cert-manager.md)
-4. Deploy Metrics Server
-   - (external/metrics-server.md)
-5. Installation and Setup EBS CSI Driver
-   - (external/EBS_CSI_Driver.md)
-6.  Setup Cluster autoscaler
-   - (external/cluster-autoscaler.md)
+1. **Create EKS Cluster**- (external/Create-EKS-Cluster.md)
+2. **Install NGINX Ingress Controller** - (external/ingress-nginx.md)
+3. **Install Cert-manager** - (external/cert-manager.md)
+4. **Deploy Metrics Server** - (external/metrics-server.md)
+5. **Installation and Setup EBS CSI Driver** - (external/EBS_CSI_Driver.md)
+6.  **Setup Cluster autoscaler** - (external/cluster-autoscaler.md)
 ---
 ## Task 2: Deploy Database, Backend and Frontend
 
 ### Step 1 - **Create namespace (rr-app):**
 
 ```bash
-cd app
+**
 kubectl apply -f namespace.yaml
 kubectl get ns
 ```
@@ -134,16 +128,19 @@ show collections
 ---
 ### Step 6: Deploy Application (backend and frontend)
 
-
-
+**backend**
 ```bash
-
+cd app/backend/
+kubectl apply -f backend-deployment.yaml
+kubectl apply -f hpa-backend.yaml
 ```
 
-Deploy everything:
-
+**frontend**
 ```bash
-
+cd app/frontend/
+kubectl apply -f frontend-deployment.yaml
+kubectl apply -f hpa-frontend.yaml
+kubectl apply -f ingress.yaml
 ```
 
 Verify:
