@@ -5,6 +5,43 @@
 **Technical Stack:**
 - **Frontend:** The frontend of this application is built using React and JavaScript. It provides a responsive and user-friendly interface.
 - **Backend and API:** The backend of this application is powered by Nodejs. It serves as the API handling user requests. MongoDB is used as the database backend, configured with a replica set for data redundancy and high availability.
+
+## Architecture Diagram
+<p align="center">
+  <img src="./doc/image/3-tire-rr-app" alt="LEMP Diagram" width="800">
+</p>
+
+---
+
+## Repo Structure
+
+```bash
+kubernetes/
+
+├── app/                             # Application workloads
+│   ├── namespace.yaml
+│   │
+│   ├── frontend/
+│   │   ├── frontend-deployment.yaml
+│   │   ├── ingress.yaml
+│   │   └── hpa.yaml
+│   │
+│   └── backend/
+│       ├── backend-deployment.yaml
+│       └── hpa.yaml
+│
+├── database/                        # Stateful components
+│   ├── mongo-statefulset.yaml
+│   └── mongo-secret.yaml
+│
+├── external/                        # Third-party installations
+│   ├── EBS_CSI_Driver.md
+│   ├── cluster-autoscaler.md                      
+│   ├── ingress-&-cert-manager.md
+│   └── metrics-server.md
+│
+└── README.md
+```
   
 ---
 ## Task 1: Setup Infra
@@ -15,8 +52,8 @@
 5. **Installation and Setup EBS CSI Driver** - (external/EBS_CSI_Driver.md)
 6.  **Setup Cluster autoscaler** - (external/cluster-autoscaler.md)
 ---
-## Task 2: Deploy Database, Backend and Frontend
 
+## Task 2: Deploy Database, Backend and Frontend
 ### Step 1 - **Create namespace (rr-app):**
 
 ```bash
