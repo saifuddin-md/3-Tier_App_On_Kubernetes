@@ -1,4 +1,4 @@
-# 3-Tier_App_On_Kubernetes
+# 3 Tier App On Kubernetes
 ## Project Overview
 - This repository demonstrates deployment and management of a 3-tier application architecture on Amazon EKS.
 
