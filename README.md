@@ -16,7 +16,7 @@
 ## Repo Structure
 
 ```bash
-kubernetes/
+3-Tier_App_On_Kubernetes/
 
 ├── app/                             # Application workloads
 │   ├── namespace.yaml
